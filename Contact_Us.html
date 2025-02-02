@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px, 0px, 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            text-align: left;
+            margin: 10px, 0 5px;
+        }
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgb(12, 144, 197);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: rgb(10, 120, 170);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="reason">Reason for Contacting Us:</label>
+            <select id="reason" name="reason">
+                <option value="general">General Inquiry</option>
+                <option value="joining issue">Issue Joining Club</option>
+                <option value="event">Event Collaboration</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const reason = document.getElementById("reason").value;
+            const message = document.getElementById("message").value;
+
+            const mailtoLink = `mailto:general.latechphotoclub@gmail.com?subject=Contact Form Submission: ${reason}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0AReason: ${reason}%0D%0AMessage: ${message}`;
+
+            window.location.href = mailtoLink;
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
