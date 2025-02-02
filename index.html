@@ -87,6 +87,17 @@
         }
         .prev { left: 10px; }
         .next { right: 10px; }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         .join-section {
             display: flex;
             align-items: center;
@@ -126,6 +137,7 @@
     </section>
 
     <div class="lightbox" id="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
         <span class="prev" onclick="changeImage(-1)">&#10094;</span>
         <img id="lightbox-img">
         <span class="next" onclick="changeImage(1)">&#10095;</span>
@@ -141,13 +153,14 @@
         let loadedImages = 0;
         let imageIndices = Array.from({ length: totalImages }, (_, i) => i + 1);
         imageIndices = imageIndices.sort(() => Math.random() - 0.5);
+        const previews = imageIndices.map(num => `previews/image${num}.webp`);
         const images = imageIndices.map(num => `pictures/image${num}.jpg`);
 
         function loadImages() {
             const gallery = document.getElementById("gallery");
             for (let i = 0; i < imagesPerLoad && loadedImages < totalImages; i++, loadedImages++) {
                 const img = document.createElement("img");
-                img.src = images[loadedImages];
+                img.src = previews[loadedImages];
                 img.alt = `Photo ${loadedImages + 1}`;
                 img.setAttribute("data-index", loadedImages);
                 img.onclick = function() {
@@ -175,6 +188,9 @@
         function changeImage(direction) {
             currentIndex = (currentIndex + direction + images.length) % images.length;
             document.getElementById("lightbox-img").src = images[currentIndex];
+        }
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
         }
         document.addEventListener("keydown", function(event) {
             if (event.key === "ArrowLeft") {
