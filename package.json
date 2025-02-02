@@ -1,0 +1,19 @@
+{
+  "name": "latechphotowebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eepyabs/LaTechPhotoWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eepyabs/LaTechPhotoWebsite/issues"
+  },
+  "homepage": "https://github.com/eepyabs/LaTechPhotoWebsite#readme"
+}
