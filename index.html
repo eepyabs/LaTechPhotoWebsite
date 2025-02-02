@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="'en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,10 +87,6 @@
         }
         .prev { left: 10px; }
         .next { right: 10px; }
-        .contact-form {
-            margin: 20px;
-            padding: 20px;
-        }
         .join-section {
             display: flex;
             align-items: center;
@@ -98,15 +94,13 @@
             gap: 20px;
             padding: 20px;
         }
+        .join-text {
+            text-align: left;
+            max-width: 300px;
+        }
         .join-section img {
             width: 175px;
             height: 175px;
-        }
-        .join-text {
-            text-align: left;
-        }
-        .join-text h2 {
-            margin-top: 0;
         }
     </Style>
 </head>
@@ -145,16 +139,20 @@
         const totalImages = 32;
         const imagesPerLoad = 9;
         let loadedImages = 0;
-
         let imageIndices = Array.from({ length: totalImages }, (_, i) => i + 1);
         imageIndices = imageIndices.sort(() => Math.random() - 0.5);
+        const images = imageIndices.map(num => `pictures/image${num}.jpg`);
 
         function loadImages() {
             const gallery = document.getElementById("gallery");
             for (let i = 0; i < imagesPerLoad && loadedImages < totalImages; i++, loadedImages++) {
                 const img = document.createElement("img");
-                img.src = `pictures/image${imageIndices[loadedImages]}.jpg`;
-                img.alt = `Photo ${imageIndices[loadedImages]}`;
+                img.src = images[loadedImages];
+                img.alt = `Photo ${loadedImages + 1}`;
+                img.setAttribute("data-index", loadedImages);
+                img.onclick = function() {
+                    openLightbox(parseInt(this.getAttribute("data-index")));
+                };
                 gallery.appendChild(img);
             }
         }
@@ -168,10 +166,6 @@
         window.addEventListener("scroll", handleScroll);
         window.onload = loadImages;
 
-        document.getElementById("loadMore").addEventListener("click", loadImages);
-        window.onload = loadImages;
-
-        const images = ["autism_creature.jpg", "screaming_emoji.jpg", "fluttershy.jpg"];
         let currentIndex = 0;
         function openLightbox(index) {
             currentIndex = index;
@@ -190,7 +184,7 @@
             } else if (event.key === "Escape") {
                 document.getElementById("lightbox").style.display = "none";
             }
-        })
+        });
     </script>
 </body>
 </html>
