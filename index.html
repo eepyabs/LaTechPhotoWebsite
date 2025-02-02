@@ -59,15 +59,6 @@
             cursor: pointer;
             object-fit: cover;
         }
-        .load-more {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background: rgb(12, 144, 197);
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
         .lightbox {
             display: none;
             position: fixed;
@@ -138,7 +129,6 @@
     <section>
         <h2>Check out our work</h2>
         <div class="gallery" id="gallery"></div>
-        <button class="load-more" id="loadMore">Load More</button>
     </section>
 
     <div class="lightbox" id="lightbox">
@@ -156,18 +146,27 @@
         const imagesPerLoad = 9;
         let loadedImages = 0;
 
+        let imageIndices = Array.from({ length: totalImages }, (_, i) => i + 1);
+        imageIndices = imageIndices.sort(() => Math.random() - 0.5);
+
         function loadImages() {
             const gallery = document.getElementById("gallery");
             for (let i = 0; i < imagesPerLoad && loadedImages < totalImages; i++, loadedImages++) {
                 const img = document.createElement("img");
-                img.src = `pictures/image${loadedImages + 1}.jpg`;
-                img.alt = `Photo ${loadedImages + 1}`;
+                img.src = `pictures/image${imageIndices[loadedImages]}.jpg`;
+                img.alt = `Photo ${imageIndices[loadedImages]}`;
                 gallery.appendChild(img);
             }
-            if (loadedImages >= totalImages) {
-                document.getElementById("loadMore").style.display = "none";
+        }
+
+        function handleScroll() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                loadImages();
             }
         }
+
+        window.addEventListener("scroll", handleScroll);
+        window.onload = loadImages;
 
         document.getElementById("loadMore").addEventListener("click", loadImages);
         window.onload = loadImages;
