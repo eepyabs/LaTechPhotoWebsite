@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="'en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA Tech Photography Club</title>
+    <Style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: rgb(12, 144, 197);
+            color: black;
+            padding: 20px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .header-logo {
+            width: 100px;
+            height: auto;
+        }
+        .header-title {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid black;
+            width: 0;
+            animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(229, 55, 55);
+        }
+        .contact-form {
+            margin: 20px;
+            padding: 20px;
+        }
+    </Style>
+</head>
+<body>
+    <header>
+        <img src="photo club logo workshopping.png" alt="Club Logo" class="header-logo">
+        <h1 class="header-title">Welcome to the LA Tech Photography Club!</h1>
+    </header>
+
+    <section>
+        <h2>Wanna Join?</h2>
+        <p>Scan the QR code below to join and help share your art!</p>
+        <div class="join-section">
+            <img src="qr_code.png" alt="Join QR Code">
+        </div>
+    </section>
+
+    <section>
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <img src="autism_creature.jpg" alt="Photo 1">
+            <img src="screaming_emoji.jpg" alt="Photo 2">
+            <img src="fluttershy.jpg" alt="Photo 3">
+        </div>
+    </section>
+
+    <section>
+        <h2>Contact Us</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required><br>
+            <input type="email" placeholder="Your Email" required><br>
+            <textarea placeholder="Your Message" required></textarea><br>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
