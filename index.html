@@ -59,6 +59,15 @@
             cursor: pointer;
             object-fit: cover;
         }
+        .load-more {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: rgb(12, 144, 197);
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
         .lightbox {
             display: none;
             position: fixed;
@@ -128,11 +137,8 @@
 
     <section>
         <h2>Check out our work</h2>
-        <div class="gallery">
-            <img src="autism_creature.jpg" alt="Photo 1" onclick="openLightbox(0)">
-            <img src="screaming_emoji.jpg" alt="Photo 2" onclick="openLightbox(1)">
-            <img src="fluttershy.jpg" alt="Photo 3" onclick="openLightbox(2)">
-        </div>
+        <div class="gallery" id="gallery"></div>
+        <button class="load-more" id="loadMore">Load More</button>
     </section>
 
     <div class="lightbox" id="lightbox">
@@ -146,6 +152,26 @@
     </section>
 
     <script>
+        const totalImages = 32;
+        const imagesPerLoad = 9;
+        let loadedImages = 0;
+
+        function loadImages() {
+            const gallery = document.getElementById("gallery");
+            for (let i = 0; i < imagesPerLoad && loadedImages < totalImages; i++, loadedImages++) {
+                const img = document.createElement("img");
+                img.src = `pictures/image${loadedImages + 1}.jpg`;
+                img.alt = `Photo ${loadedImages + 1}`;
+                gallery.appendChild(img);
+            }
+            if (loadedImages >= totalImages) {
+                document.getElementById("loadMore").style.display = "none";
+            }
+        }
+
+        document.getElementById("loadMore").addEventListener("click", loadImages);
+        window.onload = loadImages;
+
         const images = ["autism_creature.jpg", "screaming_emoji.jpg", "fluttershy.jpg"];
         let currentIndex = 0;
         function openLightbox(index) {
