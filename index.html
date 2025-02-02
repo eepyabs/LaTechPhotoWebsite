@@ -20,15 +20,20 @@
             align-items: center;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
         .header-logo {
-            width: 200px;
+            width: auto;
+            max-width: 200px;
             height: auto;
             flex-shrink: 0;
         }
         .header-title-container {
             display: flex;
             align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+            max-width: 65%; /* Prevents text from stretching too much */
         }
         .header-title {
             overflow: hidden;
