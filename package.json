@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/eepyabs/LaTechPhotoWebsite/issues"
   },
-  "homepage": "https://github.com/eepyabs/LaTechPhotoWebsite#readme"
+  "homepage": "https://github.com/eepyabs/LaTechPhotoWebsite#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
