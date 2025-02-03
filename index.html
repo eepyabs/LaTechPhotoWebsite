@@ -10,9 +10,10 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            background: rgb(145, 186, 214);
         }
         header {
-            background: rgb(12, 144, 197);
+            background: rgb(46, 89, 132);
             color: black;
             padding: 20px;
             font-size: 20px;
@@ -60,7 +61,7 @@
             height: 250px;
             margin: 10px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgb(229, 55, 55);
+            box-shadow: 0 0 20px rgb(0, 0, 0);
             cursor: pointer;
             object-fit: cover;
         }
@@ -107,6 +108,7 @@
         .join-section img {
             width: 175px;
             height: 175px;
+            border-radius: 10%;
         }
         @media (max-width: 768px) {
             /* Hide Header Text */
@@ -124,6 +126,13 @@
         </div>
     </header>
 
+    <section>
+        <h2>About Us</h2>
+        <p>Welcome to the official Louisiana Tech photography club!</p>
+        <p>We are a passionate community of photographers who love capturing and sharing the world around us!</p>
+        <p><a href="About_Us.html">Learn more here.</a></p>
+    </section>
+    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
     <section class="join-section">
         <div class="join-text">
             <h2>Wanna Join?</h2>
@@ -131,7 +140,7 @@
         </div>
         <img src="qr_code.png" alt="Join QR Code">
     </section>
-
+    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
     <section>
         <h2>Check out our work</h2>
         <div class="gallery" id="gallery"></div>
@@ -142,7 +151,7 @@
         <img id="lightbox-img" onclick="event.stopPropagation();">
         <span class="next" onclick="changeImage(1)">&#10095;</span>
     </div>
-
+    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
     <section>
         <h2><a href="Contact_Us.html">Contact Us</a></h2>
     </section>
