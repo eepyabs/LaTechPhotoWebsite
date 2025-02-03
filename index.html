@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LA Tech Photography Club</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <Style>
         body {
             font-family: Arial, sans-serif;
@@ -114,6 +115,34 @@
             /* Hide Header Text */
             .header-title-container {
                 display: none; /* Removes the text on small screens */
+            }
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #181818; /* Dark background */
+                color: #ffffff; /* Light text */
+            }
+
+            header {
+                background: #302f42; /* Darker header */
+                color: white; /* Change text to white */
+            }
+
+            .header-title {
+                border-right: 3px solid white; /* Adjust typing effect */
+            }
+
+            .gallery img {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Lighter glow */
+            }
+
+            .lightbox {
+                background: rgba(0, 0, 0, 0.95); /* Make the lightbox darker */
+            }
+
+            .lightbox .prev, .lightbox .next, .close-btn {
+                background: rgba(255, 255, 255, 0.2); /* Light transparent buttons */
+                color: white;
             }
         }
     </Style>
