@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 1; i <= totalImages; i++) {
         let img = document.createElement("img");
         img.src = `pictures/image${i}.jpg`;
+        img.style.opacity = "0";
+        img.style.transition = "opacity 1.5s ease-in-out";
         slideshowContainer.appendChild(img);
         images.push(img);
     }
