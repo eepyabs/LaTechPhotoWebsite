@@ -140,7 +140,23 @@
                 background: rgba(0, 0, 0, 0.95); /* Make the lightbox darker */
             }
 
-            .lightbox .prev, .lightbox .next, .close-btn {
+            .close-btn {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                font-size: 40px;
+                color: white;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 5px 15px;
+                border-radius: 5px;
+            }
+
+            .close-btn:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .lightbox .prev, .lightbox .next {
                 background: rgba(255, 255, 255, 0.2); /* Light transparent buttons */
                 color: white;
             }
@@ -164,7 +180,7 @@
     <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
     <section class="join-section">
         <div class="join-text">
-            <h2>Wanna Join?</h2>
+            <h2><a href="qr_code.png" style"text-decoration: none; color: inherit;">Wanna Join?</a></h2>
             <p>Scan the QR code to join and show your creativity!</p>
         </div>
         <img src="qr_code.png" alt="Join QR Code">
@@ -176,6 +192,7 @@
     </section>
 
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="close-btn" onclick="closeLightbox(event)">&times;</span>
         <span class="prev" onclick="changeImage(-1)">&#10094;</span>
         <img id="lightbox-img" onclick="event.stopPropagation();">
         <span class="next" onclick="changeImage(1)">&#10095;</span>
@@ -227,8 +244,8 @@
             currentIndex = (currentIndex + direction + images.length) % images.length;
             document.getElementById("lightbox-img").src = images[currentIndex];
         }
-        function closeLightbox() {
-            if (event.target === document.getElementById("lightbox")) {
+        function closeLightbox(event) {
+            if (event.target === document.getElementById("lightbox") || event.target.classList.contains("close-btn")) {
                 document.getElementById("lightbox").style.display = "none";
             }
         }

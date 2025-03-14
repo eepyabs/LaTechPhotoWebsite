@@ -10,7 +10,38 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            background-color: #f4f4f4;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .slideshow-container img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            pointer-events: none;
         }
         .container {
             width: 50%;
@@ -19,6 +50,8 @@
             background: white;
             box-shadow: 0px, 0px, 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
+            position: relative;
+            z-index: 1;
         }
         h1 {
             margin-bottom: 20px;
@@ -51,9 +84,12 @@
     </style>
 </head>
 <body>
+    <div class="slideshow-container"></div>
+    <div class="background-overlay"></div>
+
     <div class="container">
         <h1>Contact Us</h1>
-        <form>
+        <form id="contact-form">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -73,9 +109,32 @@
 
             <button type="submit">Send</button>
         </form>
+        <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 10px; background: rgb(200, 50, 50); color: white; border: none; border-radius: 5px; cursor: pointer;">Back to Home</button>
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const totalImages = 32;
+            const slideshowContainer = document.querySelector(".slideshow-container");
+            let images = [];
+
+            for (let i = 1; i <= totalImages; i++) {
+                let img = document.createElement("img");
+                img.src = `pictures/image${i}.jpg`;
+                slideshowContainer.appendChild(img);
+                images.push(img);
+            }
+
+            let currentIndex = 0;
+            function showNextImage() {
+                images.forEach(img => img.style.opacity = "0");
+                images[currentIndex].style.opacity = "1";
+                currentIndex = (currentIndex + 1) % totalImages;
+                setTimeout(showNextImage, 5000);
+            }
+            showNextImage();
+        });
+
         document.getElementById("contact-form").addEventListener("submit", function(event) {
             event.preventDefault();
 

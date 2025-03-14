@@ -11,6 +11,7 @@
             padding: 0;
             text-align: center;
             background: rgb(145, 186, 214);
+            color: black;
         }
         header {
             background: rgb(46, 89, 132);
@@ -29,6 +30,26 @@
         }
         a:hover {
             text-decoration: underline;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #181818;
+                color: white;
+            }
+            header {
+                background: #302f42;
+                color: white;
+            }
+            a {
+                color: #66ccff;
+            }
+            .content p {
+                color: white;
+            }
+            div {
+                background: rgba(255, 255, 255, 0.1);
+                border: 3px solid #66ccff;
+            }
         }
     </style>
 </head>
