@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = 1894;
+const PORT = 80; // Ensure proper permissions if using port 80
 
-// Serve static files from the current directory
-app.use(express.static(__dirname));
+// Serve static files (like HTML, CSS, JS, images)
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`);
+    console.log(`Server is running at http://0.0.0.0:${PORT}`);
 });

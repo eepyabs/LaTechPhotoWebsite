@@ -81,7 +81,19 @@
         button:hover {
             background: rgb(10, 120, 170);
         }
+        @media (max-width: 900px) {
+            button {
+                top: 10px;
+                left: 10px;
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            .container {
+                margin-top: 80px;
+            }
+        }
     </style>
+    <script src="Contact_Us.js" defer></script>
 </head>
 <body>
     <div class="slideshow-container"></div>
@@ -109,6 +121,7 @@
 
             <button type="submit">Send</button>
         </form>
+<<<<<<< HEAD:Contact_Us.html
         <button onclick="window.location.href='index.html'" style="margin-top: 20px; padding: 10px; background: rgb(200, 50, 50); color: white; border: none; border-radius: 5px; cursor: pointer;">Back to Home</button>
     </div>
 
@@ -152,5 +165,23 @@
             }, 2000);
         });
     </script>
+=======
+        <button onclick="window.location.href='index.html'" style="
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            color: white;
+            border: 2px solid rgb(145, 186, 214);
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        ">
+            Back to Home
+        </button>
+    </div>
+>>>>>>> d12920fe10d6bff144de509b37bb935a7039452f:public/Contact_Us.html
 </body>
 </html>
