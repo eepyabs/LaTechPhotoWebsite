@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upcoming Events - LA Tech Photography Club</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: rgb(145, 186, 214);
+            text-align: center;
+        }
+        header {
+            background: rgb(46, 89, 132);
+            color: white;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background: rgb(12, 144, 197);
+        }
+        nav ul li {
+            margin: 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .event {
+            background: white;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        .event h3 {
+            margin: 0;
+            color: rgb(46, 89, 132);
+        }
+        .event p {
+            margin: 10px 0 0;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #181818;
+                color: white;
+            }
+            header {
+                background: #302f42;
+                color: white;
+            }
+            nav ul {
+                background: #1e1e2e;
+            }
+            nav ul li a {
+                color: #ffffff;
+            }
+            .event {
+                background: #2a2a2a;
+                color: white;
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            }
+            .event h3 {
+                color: #90c4ff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Events.html">Events</a></li>
+                <li><a href="Gallery.html">Gallery</a></li>
+                <li><a href="About_Us.html">About Us</a></li>
+                <li><a href="Contact_Us.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <h1>Upcoming Events</h1>
+    </header>
+    <div class="content" id="event-list">
+
+    </div>
+    <script>
+        const events = [
+            {
+                "title": "Weekly Meeting!",
+                "date": "Every Thursday @6pm",
+                "location": "TVAC #111",
+                "description": "Come one come all! In our weekly meetings, we discuss events, camera types, and occasionally conduct photoshoots in the photo lab!"
+            }
+        ];
+    
+        const container = document.getElementById("event-list");
+        events.forEach(event => {
+            const eventDiv = document.createElement("div");
+            eventDiv.className = "event";
+            eventDiv.innerHTML = `
+                <h3>${event.title}</h3>
+                <p>
+                    <strong>Date: </strong>${event.date}<br>
+                    <strong>Location: </strong>${event.location}<br>
+                    ${event.description}
+                </p>
+            `;
+            container.appendChild(eventDiv);
+        });
+    </script>    
+</body>
+</html>

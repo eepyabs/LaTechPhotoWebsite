@@ -13,6 +13,28 @@
             background: rgb(145, 186, 214);
             color: black;
         }
+        .nav-bar {
+            background-color: rgb(35, 65, 105);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-bar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
         header {
             background: rgb(46, 89, 132);
             color: black;
@@ -36,6 +58,15 @@
                 background: #181818;
                 color: white;
             }
+            .nav-bar {
+                background-color: #1e1e2e;
+            }
+            .nav-bar a {
+                color: #fff;
+            }
+            .nav-bar a:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
             header {
                 background: #302f42;
                 color: white;
@@ -55,12 +86,12 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul style="list-style: none; padding: 0; display: flex; justify-content: center; background: rgb(12, 144, 197); margin: 0;">
-                <li style="margin: 10px;"><a href="index.html" style="color: white; text-decoration: none; font-size: 18px;">Home</a></li>
-                <li style="margin: 10px;"><a href="About_Us.html" style="color: white; text-decoration: none; font-size: 18px;">About Us</a></li>
-                <li style="margin: 10px;"><a href="Contact_Us.html" style="color: white; text-decoration: none; font-size: 18px;">Contact Us</a></li>
-            </ul>
+        <nav class="nav-bar">
+            <a href="index.html">Home</a>
+            <a href="Events.html">Events</a>
+            <a href="Gallery.html">Gallery</a>
+            <a href="About_Us.html">About Us</a>
+            <a href="Contact_Us.html">Contact</a>
         </nav>
         <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
             <img src="photo club logo.png" alt="Club Logo" style="width: 150px; height: auto;">

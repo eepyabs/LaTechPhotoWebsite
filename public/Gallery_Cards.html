@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - LA Tech Photography Club</title>
+    <style>
+        body {
+            background: #181818;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .card {
+            position: relative;
+            width: 250px;
+            height: 300px;
+            background: #222;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .card b {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('pictures/image1.jpg') center/cover;
+            filter: brightness(0.8);
+            z-index: 1;
+        }
+        .card .content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+        .card .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0 0 10px;
+        }
+        .card .title span {
+            display: block;
+            font-size: 12px;
+            color: #aaa;
+        }
+        .sci {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            gap: 15px;
+            margin: 0;
+        }
+        .sci li a svg {
+            fill: white;
+            transition: transform 0.2s;
+        }
+        .sci li a:hover svg {
+            transform: scale(1.2);
+            fill: #0C90C5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gallery</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const totalImages = 12;
+        const gallery = document.getElementById("gallery");
+
+        for (let i = 1; i <= totalImages; i++) {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <b style="background: url('pictures/image${i}.jpg') center/cover;"></b>
+                <div class="content">
+                    <p class="title">Photo ${i}<br><span>Captured Moment</span></p>
+                    <ul class="sci">
+                    <li><a href="#"><svg class="fa-brands fa-facebook" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13..."/></svg></a></li>
+                    <li><a href="#"><svg class="fa-brands fa-twitter" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548..."/></svg></a></li>
+                    <li><a href="#"><svg class="fa-brands fa-linkedin-in" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9..."/></svg></a></li>
+                    <li><a href="#"><svg class="fa-brands fa-instagram" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0..."/></svg></a></li>
+                </ul>
+                </div>
+            `;
+            gallery.appendChild(card);  
+        }
+    </script>
+</body>
+</html>

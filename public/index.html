@@ -15,6 +15,28 @@
             text-align: center;
             background: rgb(145, 186, 214);
         }
+        .nav-bar {
+            background-color: rgb(35, 65, 105);
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .nav-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav-bar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
         header {
             background: rgb(46, 89, 132);
             color: black;
@@ -125,6 +147,18 @@
                 color: #ffffff; /* Light text */
             }
 
+            .nav-bar {
+                background-color: #1e1e2e;
+            }
+
+            .nav-bar a {
+                color: #fff;
+            }
+
+            .nav-bar a:hover {
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
             header {
                 background: #302f42; /* Darker header */
                 color: white; /* Change text to white */
@@ -178,6 +212,13 @@
     <script src="freakbob.js" defer></script>
 </head>
 <body>
+    <nav class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="Events.html">Events</a>
+        <a href="Gallery.html">Gallery</a>
+        <a href="About_Us.html">About Us</a>
+        <a href="Contact_Us.html">Contact</a>
+    </nav>
     <header>
         <img src="photo club logo.png" alt="Club Logo" class="header-logo">
         <div class="header-title-container">
@@ -201,86 +242,7 @@
     </section>
     <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
     <section>
-        <h2>Check out our work</h2>
-        <div class="gallery" id="gallery"></div>
-    </section>
-
-    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-        <span class="close-btn" onclick="closeLightbox(event)">&times;</span>
-        <span class="prev" onclick="changeImage(-1)">&#10094;</span>
-        <img id="lightbox-img" onclick="event.stopPropagation();">
-        <span class="next" onclick="changeImage(1)">&#10095;</span>
-    </div>
-    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
-    <section>
         <h2><a href="Contact_Us.html">Contact Us</a></h2>
     </section>
-
-    <script>
-    const totalImages = 32;
-    const imagesPerLoad = 9;
-    let loadedImages = 0;
-    let imageIndices = Array.from({ length: totalImages }, (_, i) => i + 1);
-    imageIndices = imageIndices.sort(() => Math.random() - 0.5);
-
-    const previews = imageIndices.map(num => `previews/image${num}.webp`);
-    const images = imageIndices.map(num => `pictures/image${num}.jpg`);
-
-    function loadImages() {
-        const gallery = document.getElementById("gallery");
-        for (let i = 0; i < imagesPerLoad && loadedImages < totalImages; i++, loadedImages++) {
-            const img = document.createElement("img");
-            img.src = previews[loadedImages];
-            img.alt = `Photo ${loadedImages + 1}`;
-            img.setAttribute("data-index", loadedImages);
-            img.onclick = function() {
-                openLightbox(parseInt(this.getAttribute("data-index")));
-            };
-            gallery.appendChild(img);
-        }
-    }
-
-    function handleScroll() {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
-            loadImages();
-        }
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    window.onload = loadImages;
-
-    // Lightbox Controls
-    let currentIndex = 0;
-
-    function openLightbox(index) {
-        currentIndex = index;
-        document.getElementById("lightbox-img").src = images[currentIndex];
-        document.getElementById("lightbox").style.display = "flex";
-    }
-
-    function changeImage(direction) {
-        currentIndex = (currentIndex + direction + images.length) % images.length;
-        document.getElementById("lightbox-img").src = images[currentIndex];
-    }
-
-    function closeLightbox(event) {
-        if (event.target === document.getElementById("lightbox") || event.target.classList.contains("close-btn")) {
-            document.getElementById("lightbox").style.display = "none";
-        }
-    }
-
-    // Keyboard Navigation
-    document.addEventListener("keydown", function(event) {
-        if (document.getElementById("lightbox").style.display === "flex") {
-            if (event.key === "ArrowLeft") {
-                changeImage(-1);
-            } else if (event.key === "ArrowRight") {
-                changeImage(1);
-            } else if (event.key === "Escape") {
-                document.getElementById("lightbox").style.display = "none";
-            }
-        }
-    });
-    </script>
 </body>
 </html>
