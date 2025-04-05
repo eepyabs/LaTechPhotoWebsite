@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gallery - LA Tech Photography Club</title>
-    <link rel="stylesheet" href="styles.css" />
     <style>
         .nav-bar {
             background-color: rgb(35, 65, 105);
@@ -167,41 +166,29 @@
     <div class="gallery" id="gallery"></div>
 
     <script>
-        const totalImages = 32;
-        const titles = [
-            "Cason Smith",
-            "Cason Smith",
-            "Cason Smith",
-            "Cason Smith",
-            "Cason Smith",
-            "John Skrobarcek",
-            "John Skrobarcek",
-            "John Skrobarcek",
-            "John Skrobarcek",
-            "John Skrobarcek",
-            "John Skrobarcek",
+        fetch('gallery-data.php')
+            .then(res => res.json())
+            .then(images => {
+                const gallery = document.getElementById('gallery');
 
+                images.forEach(({ photographer, image }) => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
 
-        ]
+                    const bg = document.createElement('div');
+                    bg.className = 'card-bg';
+                    bg.style.backgroundImage = `url(${encodeURI(image)})`;
 
-        for (let i = 1; i <= totalImages; i++) {
-            const card = document.createElement("div");
-            card.className = "card";
+                    const content = document.createElement('div');
+                    content.className = 'content';
+                    content.innerHTML = `<p class="title">${photographer}</p>`;
 
-            const image = document.createElement("div");
-            image.className = "card-bg";
-            image.style.backgroundImage = `url(previews/image${i}.webp)`;
-
-            const content = document.createElement("div");
-            content.className = "content";
-            content.innerHTML = `
-                <p class="title">${titles[i - 1] || `Photo ${i}`}</p>
-            `;
-
-            card.appendChild(image);
-            card.appendChild(content);
-            gallery.appendChild(card);
-        }
+                    card.appendChild(bg);
+                    card.appendChild(content);
+                    gallery.appendChild(card);
+                });
+            })
+            .catch(err => console.error('Failed to load gallery data: ', err));
     </script>
 </body>
 </html>
