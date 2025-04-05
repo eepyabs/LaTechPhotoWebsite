@@ -166,7 +166,7 @@
     <div class="gallery" id="gallery"></div>
 
     <script>
-        fetch('gallery-data.php')
+        fetch('/gallery-data')
             .then(res => res.json())
             .then(images => {
                 const gallery = document.getElementById('gallery');
