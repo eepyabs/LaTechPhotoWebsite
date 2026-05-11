@@ -40,6 +40,10 @@ function photoTime(image) {
 
     if (timestamps.length) return Math.max(...timestamps);
 
+    return photoSequence(image);
+}
+
+function photoSequence(image) {
     const match = /^img_(\d+)_/i.exec(image.id || '');
     return match ? Number(match[1]) : 0;
 }
@@ -53,8 +57,13 @@ function compareText(left, right) {
 
 function sortImages(images) {
     return [...images].sort((left, right) => {
+        const leftTime = photoTime(left);
+        const rightTime = photoTime(right);
+        const leftSequence = photoSequence(left);
+        const rightSequence = photoSequence(right);
+
         if (galleryState.sortMode === 'oldest') {
-            return photoTime(left) - photoTime(right);
+            return (leftTime - rightTime) || (leftSequence - rightSequence);
         }
 
         if (galleryState.sortMode === 'title') {
@@ -65,7 +74,7 @@ function sortImages(images) {
             return compareText(left.photographer, right.photographer) || compareText(left.title, right.title);
         }
 
-        return photoTime(right) - photoTime(left);
+        return (rightTime - leftTime) || (rightSequence - leftSequence);
     });
 }
 

@@ -42,3 +42,23 @@ For a Discord bot upload flow, the bot should:
 The website reads `/gallery-data`, which normalizes this manifest for the frontend.
 
 The gallery page sorts by `submittedAt`, `approvedAt`, `createdAt`, or `dateAdded`. If none of those fields exist, it falls back to the numeric part of the ID, such as `img_0033_A9F2`.
+
+## Avoiding Git Conflicts
+
+Once the bot is approving photos on the server, `public/gallery/photos.json` becomes runtime data. Since this file is already tracked by Git, `.gitignore` will not stop conflicts by itself.
+
+On the server that runs the bot, run this once:
+
+```bash
+git update-index --skip-worktree public/gallery/photos.json
+```
+
+That tells Git to leave the server's local gallery manifest alone during normal code pulls.
+
+To undo that later:
+
+```bash
+git update-index --no-skip-worktree public/gallery/photos.json
+```
+
+New bot-generated gallery image files are ignored by `.gitignore`, so they can stay local to the server unless you intentionally add them to Git.
