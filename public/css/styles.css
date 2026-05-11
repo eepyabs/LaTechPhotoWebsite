@@ -221,6 +221,30 @@ h3 {
     font-size: 1.12rem;
 }
 
+.gallery-hero {
+    display: grid;
+    grid-template-columns: auto minmax(220px, 0.8fr) minmax(280px, 1.2fr);
+    align-items: end;
+    gap: 16px;
+    padding: 22px 0 10px;
+}
+
+.gallery-hero .eyebrow,
+.gallery-hero .lead {
+    margin: 0;
+}
+
+.gallery-hero h1 {
+    max-width: none;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    line-height: 1;
+}
+
+.gallery-hero .lead {
+    max-width: none;
+    font-size: 0.98rem;
+}
+
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
@@ -230,6 +254,10 @@ h3 {
 
 .section {
     padding: 38px 0;
+}
+
+.gallery-section {
+    padding-top: 12px;
 }
 
 .section-header {
@@ -387,14 +415,22 @@ h3 {
     margin-bottom: 18px;
 }
 
-.gallery-tools input {
+.gallery-tools input,
+.gallery-tools select {
     min-height: 44px;
-    flex: 1 1 260px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 10px 12px;
     background: var(--surface);
     color: var(--text);
+}
+
+.gallery-tools input {
+    flex: 1 1 260px;
+}
+
+.gallery-tools select {
+    flex: 0 1 180px;
 }
 
 .lightbox {
@@ -617,6 +653,16 @@ h3 {
 
     .page-hero {
         padding-top: 42px;
+    }
+
+    .gallery-hero {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 18px 0 8px;
+    }
+
+    .gallery-hero h1 {
+        font-size: 1.8rem;
     }
 
     .section-header,

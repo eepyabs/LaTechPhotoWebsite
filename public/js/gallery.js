@@ -1,7 +1,9 @@
 const galleryState = {
     images: [],
     filteredImages: [],
-    currentIndex: 0
+    currentIndex: 0,
+    searchQuery: '',
+    sortMode: 'newest'
 };
 
 function shuffle(items) {
@@ -24,6 +26,40 @@ function photoCaption(image) {
             ${image.photographer}
         </span>
     `;
+}
+
+function photoTime(image) {
+    const dateValue = image.submittedAt || image.approvedAt || image.createdAt || image.dateAdded;
+    const parsed = dateValue ? Date.parse(dateValue) : NaN;
+    if (!Number.isNaN(parsed)) return parsed;
+
+    const match = /^img_(\d+)_/i.exec(image.id || '');
+    return match ? Number(match[1]) : 0;
+}
+
+function compareText(left, right) {
+    return String(left || '').localeCompare(String(right || ''), undefined, {
+        numeric: true,
+        sensitivity: 'base'
+    });
+}
+
+function sortImages(images) {
+    return [...images].sort((left, right) => {
+        if (galleryState.sortMode === 'oldest') {
+            return photoTime(left) - photoTime(right);
+        }
+
+        if (galleryState.sortMode === 'title') {
+            return compareText(left.title, right.title);
+        }
+
+        if (galleryState.sortMode === 'photographer') {
+            return compareText(left.photographer, right.photographer) || compareText(left.title, right.title);
+        }
+
+        return photoTime(right) - photoTime(left);
+    });
 }
 
 function renderHomePhotos(images) {
@@ -55,11 +91,18 @@ function renderGallery(images) {
     });
 }
 
-function setFilteredImages(images) {
-    galleryState.filteredImages = images;
-    renderGallery(images);
+function applyGalleryFilters() {
+    const filtered = galleryState.images.filter(image => {
+        if (!galleryState.searchQuery) return true;
+        return `${image.title} ${image.photographer}`.toLowerCase().includes(galleryState.searchQuery);
+    });
+
+    const sorted = sortImages(filtered);
+    galleryState.filteredImages = sorted;
+    renderGallery(sorted);
+
     const count = document.querySelector('[data-gallery-count]');
-    if (count) count.textContent = `${images.length} photos`;
+    if (count) count.textContent = `${sorted.length} photos`;
 }
 
 function setupGallerySearch() {
@@ -67,11 +110,19 @@ function setupGallerySearch() {
     if (!input) return;
 
     input.addEventListener('input', () => {
-        const query = input.value.trim().toLowerCase();
-        const filtered = galleryState.images.filter(image => {
-            return `${image.title} ${image.photographer}`.toLowerCase().includes(query);
-        });
-        setFilteredImages(filtered);
+        galleryState.searchQuery = input.value.trim().toLowerCase();
+        applyGalleryFilters();
+    });
+}
+
+function setupGallerySort() {
+    const select = document.querySelector('[data-gallery-sort]');
+    if (!select) return;
+
+    select.value = galleryState.sortMode;
+    select.addEventListener('change', () => {
+        galleryState.sortMode = select.value;
+        applyGalleryFilters();
     });
 }
 
@@ -153,16 +204,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const images = await fetchGalleryImages();
         galleryState.images = images;
-        galleryState.filteredImages = images;
 
         renderHomePhotos(images);
-        renderGallery(images);
+        applyGalleryFilters();
         setupGallerySearch();
+        setupGallerySort();
         setupLightbox();
         openHashPhoto();
-
-        const count = document.querySelector('[data-gallery-count]');
-        if (count) count.textContent = `${images.length} photos`;
     } catch (error) {
         const target = document.querySelector('[data-gallery-grid], [data-featured-photos]');
         if (target) {

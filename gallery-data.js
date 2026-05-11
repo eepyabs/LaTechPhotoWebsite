@@ -20,7 +20,11 @@ router.get('/', (req, res) => {
         photographer: photo.photographer,
         alt: photo.alt || `${photo.title} by ${photo.photographer}`,
         preview: photo.preview,
-        full: photo.full || photo.image
+        full: photo.full || photo.image,
+        submittedAt: photo.submittedAt,
+        approvedAt: photo.approvedAt,
+        createdAt: photo.createdAt,
+        dateAdded: photo.dateAdded
     }));
 
     res.json(photos);

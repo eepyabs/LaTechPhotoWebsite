@@ -29,13 +29,13 @@
     </header>
 
     <main>
-        <section class="page-hero">
+        <section class="page-hero gallery-hero">
             <p class="eyebrow">Gallery</p>
             <h1>Browse member photos full size.</h1>
             <p class="lead">Click any photo to open the full image. Use left and right arrow keys to move through the gallery, and Escape to close.</p>
         </section>
 
-        <section class="section" aria-labelledby="gallery-heading">
+        <section class="section gallery-section" aria-labelledby="gallery-heading">
             <div class="section-header">
                 <div>
                     <h2 id="gallery-heading">Photos</h2>
@@ -44,6 +44,12 @@
             </div>
             <div class="gallery-tools">
                 <input type="search" data-gallery-search placeholder="Search by photographer or photo title" aria-label="Search gallery">
+                <select data-gallery-sort aria-label="Sort gallery">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="title">Title</option>
+                    <option value="photographer">Photographer</option>
+                </select>
             </div>
             <div class="gallery-grid" data-gallery-grid>
                 <p class="empty-state">Loading gallery...</p>
