@@ -213,9 +213,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         galleryState.images = images;
 
         renderHomePhotos(images);
-        applyGalleryFilters();
         setupGallerySearch();
         setupGallerySort();
+        applyGalleryFilters();
         setupLightbox();
         openHashPhoto();
     } catch (error) {
