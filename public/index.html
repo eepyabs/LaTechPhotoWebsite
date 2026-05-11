@@ -1,248 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-current-page="home">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LA Tech Photography Club</title>
-    <link rel="icon" type="image/x-icon" href="fav/favicon.ico">
-    <!-- PNG Favicon for Modern Browsers --> <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon.png">
-    <meta name="msapplication-TileImage" content="fav/favicon.png">
-    <Style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: rgb(145, 186, 214);
-        }
-        .nav-bar {
-            background-color: rgb(35, 65, 105);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .nav-bar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        header {
-            background: rgb(46, 89, 132);
-            color: black;
-            padding: 20px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .header-logo {
-            width: auto;
-            max-width: 200px;
-            height: auto;
-            flex-shrink: 0;
-        }
-        .header-title-container {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-            justify-content: center;
-            max-width: 65%; /* Prevents text from stretching too much */
-        }
-        .header-title {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 3px solid black;
-            width: 0;
-            animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-        }
-        .gallery img {
-            width: 300px;
-            height: 250px;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgb(0, 0, 0);
-            cursor: pointer;
-            object-fit: cover;
-        }
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox img {
-            max-width: 80%;
-            max-height: 80%;
-            z-index: 10;
-        }
-        .lightbox .prev, .lightbox .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            background:rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .prev { left: 20px; }
-        .next { right: 20px; }
-        .join-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-        .join-text {
-            text-align: left;
-            max-width: 300px;
-        }
-        .join-section img {
-            width: 175px;
-            height: 175px;
-            border-radius: 10%;
-        }
-        @media (max-width: 768px) {
-            /* Hide Header Text */
-            .header-title-container {
-                display: none; /* Removes the text on small screens */
-            }
-        }
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #181818; /* Dark background */
-                color: #ffffff; /* Light text */
-            }
-
-            .nav-bar {
-                background-color: #1e1e2e;
-            }
-
-            .nav-bar a {
-                color: #fff;
-            }
-
-            .nav-bar a:hover {
-                background-color: rgba(255, 255, 255, 0.3);
-            }
-
-            header {
-                background: #302f42; /* Darker header */
-                color: white; /* Change text to white */
-            }
-
-            .header-title {
-                border-right: 3px solid white; /* Adjust typing effect */
-            }
-
-            .gallery img {
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Lighter glow */
-            }
-
-            .lightbox {
-                background: rgba(0, 0, 0, 0.95); /* Make the lightbox darker */
-            }
-
-            .close-btn {
-                position: absolute;
-                top: 20px;
-                right: 30px;
-                font-size: 40px;
-                color: white;
-                cursor: pointer;
-                background: rgba(0, 0, 0, 0.6);
-                padding: 5px 15px;
-                border-radius: 5px;
-            }
-
-            .close-btn:hover {
-                background: rgba(255, 255, 255, 0.3);
-            }
-
-            .lightbox .prev, .lightbox .next {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 30px;
-                color: white;
-                cursor: pointer;
-                background: rgba(255, 255, 255, 0.2); /* Light transparent buttons */
-                padding: 10px;
-                border-radius: 5px;
-                user-select: none;
-            }
-            .header-logo {
-                content: url("photo club logo dark mode.png");
-            }
-        }
-    </Style>
-    <script src="freakbob.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="assets/fav/site/favicon.ico">
+    <link rel="manifest" href="assets/fav/site/site.webmanifest">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/site.js" defer></script>
+    <script src="js/gallery.js" defer></script>
 </head>
 <body>
-    <nav class="nav-bar">
-        <a href="index.html">Home</a>
-        <a href="Events.html">Events</a>
-        <a href="Gallery.html">Gallery</a>
-        <a href="About_Us.html">About Us</a>
-        <a href="Contact_Us.html">Contact</a>
-    </nav>
-    <header>
-        <img src="photo club logo.png" alt="Club Logo" class="header-logo">
-        <div class="header-title-container">
-            <h1 class="header-title">Welcome to the LA Tech Photography Club!</h1>
-        </div>
+    <header class="site-header">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand-link" href="index.html">
+                <img class="brand-logo" src="assets/logos/photo-club-logo.png" alt="LA Tech Photography Club logo">
+                <span>LA Tech Photography Club</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" data-nav="home">Home</a>
+                <a href="Gallery.html" data-nav="gallery">Gallery</a>
+                <a href="Events.html" data-nav="events">Events</a>
+                <a href="About_Us.html" data-nav="about">About</a>
+                <a href="Contact_Us.html" data-nav="contact">Contact</a>
+                <button class="theme-toggle" type="button" data-theme-toggle>Theme</button>
+            </div>
+        </nav>
     </header>
 
-    <section>
-        <h2>About Us</h2>
-        <p>Welcome to the official Louisiana Tech photography club!</p>
-        <p>We are a passionate community of photographers who love capturing and sharing the world around us!</p>
-        <p><a href="About_Us.html">Learn more here.</a></p>
-    </section>
-    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
-    <section class="join-section">
-        <div class="join-text">
-            <h2><a href="https://discord.com/invite/enFX2D7kGC" style"text-decoration: none; color: inherit;">Wanna Join?</a></h2>
-            <p>Scan the QR code to join and show your creativity!</p>
+    <main>
+        <section class="page-hero">
+            <p class="eyebrow">Louisiana Tech student photographers</p>
+            <h1>Make better photos with people who want to shoot.</h1>
+            <p class="lead">We host meetings, photo walks, critiques, and hands-on shoots for students at every experience level.</p>
+            <div class="hero-actions">
+                <a class="button" href="Gallery.html">Open the Gallery</a>
+                <a class="button secondary" href="https://discord.com/invite/enFX2D7kGC">Join on Discord</a>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="featured-heading">
+            <div class="section-header">
+                <div>
+                    <p class="eyebrow">Member work</p>
+                    <h2 id="featured-heading">Fresh picks from the gallery</h2>
+                </div>
+                <p>Randomized each visit from the gallery data.</p>
+            </div>
+            <div class="home-photo-grid" data-featured-photos>
+                <p class="empty-state">Loading photos...</p>
+            </div>
+        </section>
+
+        <section class="section split" aria-labelledby="join-heading">
+            <div class="panel">
+                <p class="eyebrow">What we do</p>
+                <h2 id="join-heading">A practical club for shooting more often.</h2>
+                <p>Meetings focus on real photography habits: planning shoots, learning camera settings, editing thoughtfully, and sharing work with people who can give useful feedback.</p>
+                <p>Bring a camera, bring a phone, or just show up curious.</p>
+            </div>
+            <div class="panel join-panel">
+                <div>
+                    <h2>Join</h2>
+                    <p>Scan the QR code or use the Discord link to get meeting updates and share your photos.</p>
+                </div>
+                <img class="qr-code" src="assets/qr/discord-qr.png" alt="QR code for joining the LA Tech Photography Club Discord">
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>LA Tech Photography Club</span>
+            <a href="Contact_Us.html">general.latechphotoclub@gmail.com</a>
         </div>
-        <img src="qr_code.png" alt="Join QR Code">
-    </section>
-    <hr style="width: 80%; margin: 20px auto; border: 3px solid rgb(46, 89, 132);">
-    <section>
-        <h2><a href="Contact_Us.html">Contact Us</a></h2>
-    </section>
+    </footer>
 </body>
 </html>

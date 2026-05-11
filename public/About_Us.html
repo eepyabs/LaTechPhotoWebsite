@@ -1,139 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-current-page="about">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - LA Tech Photography Club</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: rgb(145, 186, 214);
-            color: black;
-        }
-        .nav-bar {
-            background-color: rgb(35, 65, 105);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .nav-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-        .nav-bar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        header {
-            background: rgb(46, 89, 132);
-            color: black;
-            padding: 20px;
-            font-size: 24px;
-        }
-        .content {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        a {
-            color: rgb(15, 120, 161);
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #181818;
-                color: white;
-            }
-            .nav-bar {
-                background-color: #1e1e2e;
-            }
-            .nav-bar a {
-                color: #fff;
-            }
-            .nav-bar a:hover {
-                background-color: rgba(255, 255, 255, 0.3);
-            }
-            header {
-                background: #302f42;
-                color: white;
-            }
-            a {
-                color: #66ccff;
-            }
-            .content p {
-                color: white;
-            }
-            div {
-                background: rgba(255, 255, 255, 0.1);
-                border: 3px solid #66ccff;
-            }
-        }
-    </style>
+    <title>About - LA Tech Photography Club</title>
+    <link rel="icon" type="image/x-icon" href="assets/fav/site/favicon.ico">
+    <link rel="manifest" href="assets/fav/site/site.webmanifest">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/site.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav class="nav-bar">
-            <a href="index.html">Home</a>
-            <a href="Events.html">Events</a>
-            <a href="Gallery.html">Gallery</a>
-            <a href="About_Us.html">About Us</a>
-            <a href="Contact_Us.html">Contact</a>
+    <header class="site-header">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="brand-link" href="index.html">
+                <img class="brand-logo" src="assets/logos/photo-club-logo.png" alt="LA Tech Photography Club logo">
+                <span>LA Tech Photography Club</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" data-nav="home">Home</a>
+                <a href="Gallery.html" data-nav="gallery">Gallery</a>
+                <a href="Events.html" data-nav="events">Events</a>
+                <a href="About_Us.html" data-nav="about">About</a>
+                <a href="Contact_Us.html" data-nav="contact">Contact</a>
+                <button class="theme-toggle" type="button" data-theme-toggle>Theme</button>
+            </div>
         </nav>
-        <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-            <img src="photo club logo.png" alt="Club Logo" style="width: 150px; height: auto;">
-            <h1>About Us</h1>
-        </div>
     </header>
-    <div class="content">
-        <p>In this club, we enjoy diving into different mediums of photography!</p>
-        <p>In some meetings, we will hold a photoshoot in which our members will practice shooting photos in different ways.</p>
-        <p>We give back to the community by sharing photos we have taken around the beautiful city of Ruston.</p>
-        <p>Our members come from all walks of life and use that to show others hidden gems of life!</p>
-    </div>
 
-    <section>
-        <h2>Meet the group!</h2>
+    <main>
+        <section class="page-hero">
+            <p class="eyebrow">About us</p>
+            <h1>A student space for better photography.</h1>
+            <p class="lead">The club brings together students who want to practice, teach, experiment, and document life around campus and Ruston.</p>
+        </section>
 
-        <img src="cason.png" alt="Cason" style="margin-top: 40px; width: 300px; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgb(0, 0, 0)">
-        <h2>President/Founder</h2>
-        <h3>Cason Smith</h3>
-        <div style="border: 3px solid rgb(46, 89, 132); padding: 15px; margin: 10px auto; max-width: 600px; border-radius: 10px; background: transparent; box-shadow: 0 0 10px rgba(0, 0, 0, 0);">
-            <p>Cason Smith, the founder and president of the LA Tech Photography Club, is a dedicated photographer who has spent the majority of his life working on understanding the art.</p>
-            <p>He has worked under Kevin Beasley and Jennifer Robison and has been asked to shoot for events such as Christmas in the Sky, Louisiana Film Prize, and Shreveport Times.</p>
-            <p>When he came to Tech in 2024 he wanted to create a place for photographers to come together to share their knowledge.</p>
+        <section class="section split" aria-labelledby="mission-heading">
+            <div class="panel">
+                <h2 id="mission-heading">Our focus</h2>
+                <p>We work across different styles and mediums of photography. Some meetings are practical photoshoots, some are discussion-based, and some are built around sharing what members have made.</p>
+                <p>Members come from different majors and experience levels, which keeps critiques useful and shoots approachable.</p>
+            </div>
+            <div class="panel">
+                <h2>Community</h2>
+                <p>We use photography to notice the campus, Ruston, and the people around us with more care. The gallery exists to keep that work visible.</p>
+            </div>
+        </section>
+
+        <section class="section" aria-labelledby="team-heading">
+            <div class="section-header">
+                <div>
+                    <p class="eyebrow">Leadership</p>
+                    <h2 id="team-heading">Meet the group</h2>
+                </div>
+            </div>
+            <div class="people-grid">
+                <article class="person-card">
+                    <img src="assets/team/cason.png" alt="Cason Smith">
+                    <div>
+                        <p class="role">President and Founder</p>
+                        <h3>Cason Smith</h3>
+                        <p>Cason founded the club to create a place where photographers could share knowledge and build a stronger creative community at Tech.</p>
+                    </div>
+                </article>
+                <article class="person-card">
+                    <img src="assets/team/sky.png" alt="Sky Dycus">
+                    <div>
+                        <p class="role">Public Relations Management</p>
+                        <h3>Sky Dycus</h3>
+                        <p>Sky supports outreach, networking, and event ideas, with local knowledge of Ruston and experience in photography and graphic design.</p>
+                    </div>
+                </article>
+                <article class="person-card">
+                    <img src="assets/team/abbie.png" alt="Abbie Wallen">
+                    <div>
+                        <p class="role">Information Technology Management</p>
+                        <h3>Abbie Wallen</h3>
+                        <p>Abbie supports the club's technology, including tools that help members connect, join, and share work more easily.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>LA Tech Photography Club</span>
+            <a href="Contact_Us.html">Get in touch</a>
         </div>
-
-        <img src="sky.png" alt="Sky" style="margin-top: 40px; width: 300px; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgb(0, 0, 0)">
-        <h2>Public Relations managment</h2>
-        <h3>Sky Dycus</h3>
-        <div style="border: 3px solid rgb(46, 89, 132); padding: 15px; margin: 10px auto; max-width: 600px; border-radius: 10px; background: transparent; box-shadow: 0 0 10px rgba(0, 0, 0, 0);">
-            <p>Sky Dycus is our Public Relations Director and oversees our outreach with potential new members as well as our networking efforts!.</p>
-            <p>Being from Ruston, Sky always knows the best places to shoot and is always thinking of opportunities for club events.</p>
-            <p>They are well versed in graphic design and have worked as head photography for their high school's yearbook committee.</p>
-        </div>
-
-        <img src="abbie.png" alt="Abbie" style="margin-top: 40px; width: 300px; height: auto; border-radius: 10px; box-shadow: 0 0 10px rgb(0, 0, 0)">
-        <h2>Information Technology managment</h2>
-        <h3>Abbie Wallen</h3>
-        <div style="border: 3px solid rgb(46, 89, 132); padding: 15px; margin: 10px auto; max-width: 600px; border-radius: 10px; background: transparent; box-shadow: 0 0 10px rgba(0, 0, 0, 0);">
-            <p>Abbie Wallen is our technology specialist.</p>
-            <p>She is a Computer Science major who has helped create a bot for our Discord server and even this informative website.</p>
-            <p>Our group is always trying to help find easier ways for others to join and share via technology and Abbie is here to help!</p>
-        </div>  
-    </section>
+    </footer>
 </body>
 </html>

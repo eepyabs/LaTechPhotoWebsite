@@ -3,29 +3,27 @@ const fs = require('fs');
 const path = require('path');
 
 const router = express.Router();
-const baseDir = path.join(__dirname, 'public', 'previews');
+const manifestPath = path.join(__dirname, 'public', 'gallery', 'photos.json');
+
+function loadGalleryManifest() {
+    if (!fs.existsSync(manifestPath)) {
+        return [];
+    }
+
+    return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+}
 
 router.get('/', (req, res) => {
-    const data = [];
+    const photos = loadGalleryManifest().map(photo => ({
+        id: photo.id,
+        title: photo.title,
+        photographer: photo.photographer,
+        alt: photo.alt || `${photo.title} by ${photo.photographer}`,
+        preview: photo.preview,
+        full: photo.full || photo.image
+    }));
 
-    fs.readdirSync(baseDir).forEach(photographer => {
-        const photographerDir = path.join(baseDir, photographer);
-
-        if (!fs.statSync(photographerDir).isDirectory()) return;
-
-        const imageFiles = fs.readdirSync(photographerDir).filter(file =>
-            /\.(jpg|jpeg|png|webp)$/i.test(file)
-        );
-
-        imageFiles.forEach(image => {
-            data.push({
-                photographer,
-                image: path.join('previews', photographer, image)
-            });
-        });
-    });
-
-    res.json(data);
+    res.json(photos);
 });
 
 module.exports = router;
