@@ -62,11 +62,16 @@
                 <p class="lightbox-title" data-lightbox-title></p>
                 <p class="lightbox-meta" data-lightbox-meta></p>
             </div>
-            <button class="icon-button" type="button" data-lightbox-close aria-label="Close full-size photo">x</button>
+            <div class="lightbox-controls">
+                <button class="icon-button" type="button" data-lightbox-zoom-out aria-label="Zoom out">-</button>
+                <button class="icon-button" type="button" data-lightbox-zoom-reset aria-label="Reset zoom">1x</button>
+                <button class="icon-button" type="button" data-lightbox-zoom-in aria-label="Zoom in">+</button>
+                <button class="icon-button" type="button" data-lightbox-close aria-label="Close full-size photo">x</button>
+            </div>
         </div>
         <div class="lightbox-stage">
             <button class="icon-button lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photo">&lt;</button>
-            <img class="lightbox-image" data-lightbox-image src="" alt="">
+            <img class="lightbox-image" data-lightbox-image src="" alt="" draggable="false">
             <button class="icon-button lightbox-next" type="button" data-lightbox-next aria-label="Next photo">&gt;</button>
         </div>
         <div class="lightbox-bottom">
