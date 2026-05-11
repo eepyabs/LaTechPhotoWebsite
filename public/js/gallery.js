@@ -29,9 +29,16 @@ function photoCaption(image) {
 }
 
 function photoTime(image) {
-    const dateValue = image.submittedAt || image.approvedAt || image.createdAt || image.dateAdded;
-    const parsed = dateValue ? Date.parse(dateValue) : NaN;
-    if (!Number.isNaN(parsed)) return parsed;
+    const timestamps = [
+        image.approvedAt,
+        image.submittedAt,
+        image.createdAt,
+        image.dateAdded
+    ]
+        .map(value => value ? Date.parse(value) : NaN)
+        .filter(value => !Number.isNaN(value));
+
+    if (timestamps.length) return Math.max(...timestamps);
 
     const match = /^img_(\d+)_/i.exec(image.id || '');
     return match ? Number(match[1]) : 0;
