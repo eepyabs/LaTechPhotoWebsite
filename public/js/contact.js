@@ -1,30 +1,5 @@
-document.addEventListener('DOMContentLoaded', async () => {
-    const backdrop = document.querySelector('[data-contact-backdrop]');
+document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form');
-
-    if (backdrop) {
-        try {
-            const response = await fetch('/gallery-data');
-            const images = await response.json();
-            const selected = images.sort(() => Math.random() - 0.5).slice(0, 4);
-
-            backdrop.innerHTML = selected.map((image, index) => `
-                <img src="${image.preview}" alt="" class="${index === 0 ? 'is-active' : ''}">
-            `).join('');
-
-            const slides = [...backdrop.querySelectorAll('img')];
-            let current = 0;
-            if (slides.length > 1) {
-                setInterval(() => {
-                    slides[current].classList.remove('is-active');
-                    current = (current + 1) % slides.length;
-                    slides[current].classList.add('is-active');
-                }, 4500);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     if (form) {
         form.addEventListener('submit', event => {

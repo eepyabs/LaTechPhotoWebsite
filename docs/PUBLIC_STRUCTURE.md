@@ -12,10 +12,10 @@ public/
   archive/   old source image folders kept for reference
   css/       shared stylesheets
   data/      JSON data used by pages
-  gallery/   live gallery manifest and uniquely named gallery images
+  gallery/   legacy seed files used only for initial import
   js/        browser scripts
 ```
 
-The live gallery should use `public/gallery/photos.json` and `public/gallery/images`.
+The live catalog and images live outside the checkout. See `docs/GALLERY_DATA.md`.
 
 The `archive` folder is not used by the active gallery UI. It exists so old files are preserved while the new manifest-driven upload flow is being developed.

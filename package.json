@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": { "node": ">=24" },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gallery:init": "node gallery-store.js",
+    "test": "node --test"
   },
   "repository": {
     "type": "git",

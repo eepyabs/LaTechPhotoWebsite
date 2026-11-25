@@ -30,17 +30,12 @@
 
     <main>
         <section class="page-hero gallery-hero">
-            <p class="eyebrow">Gallery</p>
-            <p class="lead">Click any photo to open the full image. Use left and right arrow keys to move through the gallery, and Escape to close.</p>
+            <h1 id="gallery-heading">Member gallery</h1>
+            <p class="lead">See what our members have been shooting. Select any photo to see it full size.</p>
         </section>
 
         <section class="section gallery-section" aria-labelledby="gallery-heading">
-            <div class="section-header">
-                <div>
-                    <h2 id="gallery-heading">Member Work</h2>
-                    <p data-gallery-count>Loading photos...</p>
-                </div>
-            </div>
+            <p class="gallery-count" data-gallery-count role="status">Loading photos…</p>
             <div class="gallery-tools">
                 <input type="search" data-gallery-search placeholder="Search by photographer or photo title" aria-label="Search gallery">
                 <select data-gallery-sort aria-label="Sort gallery">
@@ -56,24 +51,24 @@
         </section>
     </main>
 
-    <div class="lightbox" data-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <dialog class="lightbox" data-lightbox aria-label="Photo viewer">
         <div class="lightbox-top">
-            <div>
+            <div aria-live="polite">
                 <p class="lightbox-title" data-lightbox-title></p>
                 <p class="lightbox-meta" data-lightbox-meta></p>
             </div>
-            <button class="icon-button" type="button" data-lightbox-close aria-label="Close full-size photo">x</button>
+            <button class="icon-button" type="button" data-lightbox-close aria-label="Close photo" autofocus><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
         </div>
         <div class="lightbox-stage">
-            <button class="icon-button lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photo">&lt;</button>
-            <img class="lightbox-image" data-lightbox-image src="" alt="">
-            <button class="icon-button lightbox-next" type="button" data-lightbox-next aria-label="Next photo">&gt;</button>
+            <div class="lightbox-image" data-lightbox-image></div>
+            <button class="icon-button lightbox-prev" type="button" data-lightbox-prev aria-label="Previous photo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 12H5m6-6-6 6 6 6"/></svg></button>
+            <button class="icon-button lightbox-next" type="button" data-lightbox-next aria-label="Next photo"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
         </div>
         <div class="lightbox-bottom">
             <span data-lightbox-counter></span>
-            <span>Arrow keys supported</span>
+            <span>Use arrow keys to browse</span>
         </div>
-    </div>
+    </dialog>
 
     <footer class="site-footer">
         <div class="footer-inner">

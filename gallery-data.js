@@ -1,33 +1,11 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
 
-const router = express.Router();
-const manifestPath = path.join(__dirname, 'public', 'gallery', 'photos.json');
-
-function loadGalleryManifest() {
-    if (!fs.existsSync(manifestPath)) {
-        return [];
-    }
-
-    return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-}
-
-router.get('/', (req, res) => {
-    const photos = loadGalleryManifest().map(photo => ({
-        id: photo.id,
-        title: photo.title,
-        photographer: photo.photographer,
-        alt: photo.alt || `${photo.title} by ${photo.photographer}`,
-        preview: photo.preview,
-        full: photo.full || photo.image,
-        submittedAt: photo.submittedAt,
-        approvedAt: photo.approvedAt,
-        createdAt: photo.createdAt,
-        dateAdded: photo.dateAdded
-    }));
-
-    res.json(photos);
-});
-
-module.exports = router;
+module.exports = function galleryRoutes(store) {
+    const router = express.Router();
+    router.get('/gallery-data', (req, res) => res.json(store.list()));
+    router.get('/gallery/images/:name', (req, res) => {
+        if (!store.hasAsset(`/gallery/images/${req.params.name}`)) return res.sendStatus(404);
+        return res.sendFile(req.params.name, { root: store.imagesDir });
+    });
+    return router;
+};

@@ -2,7 +2,10 @@
 node_modules/
 picaudit/
 
-# Bot-approved runtime gallery additions should live on the server.
-# Existing seeded gallery files are already tracked; see docs/GALLERY_DATA.md
-# for the one-time server command that keeps photos.json from conflicting.
+# Legacy pre-SQLite uploads may still exist locally during migration.
 public/gallery/images/img_*
+
+# Local design notes and tooling
+/.impeccable/
+/DESIGN.md
+/PRODUCT.md

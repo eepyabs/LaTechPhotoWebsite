@@ -19,11 +19,16 @@ async function fetchGalleryImages() {
     return response.json();
 }
 
+// Discord captions are text, including when inserted into quoted HTML attributes.
+function escapePhotoText(value) {
+    return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
 function photoCaption(image) {
     return `
         <span class="photo-caption">
-            <strong>${image.title}</strong>
-            ${image.photographer}
+            <strong>${escapePhotoText(image.title)}</strong>
+            ${escapePhotoText(image.photographer)}
         </span>
     `;
 }
@@ -84,8 +89,8 @@ function renderHomePhotos(images) {
 
     const selected = shuffle(images).slice(0, 5);
     grid.innerHTML = selected.map(image => `
-        <a class="feature-photo" href="Gallery.html#${image.id}" aria-label="Open ${image.alt} in the gallery">
-            <img src="${image.preview}" alt="${image.alt}" loading="lazy">
+        <a class="feature-photo" href="Gallery.html#${image.id}" aria-label="Open ${escapePhotoText(image.alt)} in the gallery">
+            <img src="${image.preview}" alt="${escapePhotoText(image.alt)}" loading="lazy">
             ${photoCaption(image)}
         </a>
     `).join('');
@@ -94,10 +99,14 @@ function renderHomePhotos(images) {
 function renderGallery(images) {
     const gallery = document.querySelector('[data-gallery-grid]');
     if (!gallery) return;
+    if (!images.length) {
+        gallery.innerHTML = '<p class="empty-state">No photographs match. Try a different title or photographer.</p>';
+        return;
+    }
 
     gallery.innerHTML = images.map((image, index) => `
         <button class="gallery-card" type="button" data-gallery-index="${index}" id="${image.id}">
-            <img src="${image.preview}" alt="${image.alt}" loading="lazy">
+            <img src="${image.preview}" alt="${escapePhotoText(image.alt)}" loading="lazy">
             ${photoCaption(image)}
         </button>
     `).join('');
@@ -118,7 +127,7 @@ function applyGalleryFilters() {
     renderGallery(sorted);
 
     const count = document.querySelector('[data-gallery-count]');
-    if (count) count.textContent = `${sorted.length} photos`;
+    if (count) count.textContent = `${sorted.length} ${sorted.length === 1 ? 'photo' : 'photos'}`;
 }
 
 function setupGallerySearch() {
@@ -147,19 +156,14 @@ function openLightbox(index) {
     if (!lightbox || !galleryState.filteredImages[index]) return;
 
     galleryState.currentIndex = index;
-    document.body.classList.add('lightbox-open');
-    lightbox.classList.add('is-open');
-    lightbox.setAttribute('aria-hidden', 'false');
     updateLightbox();
+    if (!lightbox.open) lightbox.showModal();
+    document.body.classList.add('lightbox-open');
 }
 
 function closeLightbox() {
     const lightbox = document.querySelector('[data-lightbox]');
-    if (!lightbox) return;
-
-    document.body.classList.remove('lightbox-open');
-    lightbox.classList.remove('is-open');
-    lightbox.setAttribute('aria-hidden', 'true');
+    if (lightbox?.open) lightbox.close();
 }
 
 function moveLightbox(direction) {
@@ -174,7 +178,8 @@ function updateLightbox() {
     const image = galleryState.filteredImages[galleryState.currentIndex];
     if (!image) return;
 
-    const lightboxImage = document.querySelector('[data-lightbox-image]');
+    const imageStage = document.querySelector('[data-lightbox-image]');
+    const lightboxImage = imageStage.querySelector('img') || imageStage.appendChild(new Image());
     const title = document.querySelector('[data-lightbox-title]');
     const meta = document.querySelector('[data-lightbox-meta]');
     const counter = document.querySelector('[data-lightbox-counter]');
@@ -197,11 +202,13 @@ function setupLightbox() {
         if (event.target === lightbox) closeLightbox();
     });
 
-    document.addEventListener('keydown', event => {
-        if (!lightbox.classList.contains('is-open')) return;
-        if (event.key === 'Escape') closeLightbox();
-        if (event.key === 'ArrowLeft') moveLightbox(-1);
-        if (event.key === 'ArrowRight') moveLightbox(1);
+    lightbox.addEventListener('close', () => {
+        document.body.classList.remove('lightbox-open');
+    });
+    lightbox.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        moveLightbox(event.key === 'ArrowLeft' ? -1 : 1);
     });
 }
 

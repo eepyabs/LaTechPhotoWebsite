@@ -1,10 +1,11 @@
 (function () {
     const storageKey = 'latech-photo-theme';
     const root = document.documentElement;
-    const savedTheme = localStorage.getItem(storageKey);
-    const defaultTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-    root.dataset.theme = savedTheme || defaultTheme;
+    try {
+        root.dataset.theme = localStorage.getItem(storageKey) === 'dark' ? 'dark' : 'light';
+    } catch {
+        root.dataset.theme = 'light';
+    }
 
     function updateToggle(toggle) {
         const theme = root.dataset.theme;
@@ -23,7 +24,7 @@
             updateToggle(toggle);
             toggle.addEventListener('click', () => {
                 root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-                localStorage.setItem(storageKey, root.dataset.theme);
+                try { localStorage.setItem(storageKey, root.dataset.theme); } catch { /* Theme remains set for this page. */ }
                 updateToggle(toggle);
             });
         });

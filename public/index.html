@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/site.js" defer></script>
     <script src="js/gallery.js" defer></script>
+    <script src="js/projection.js" defer></script>
+    <meta name="description" content="Explore student photography and join the Louisiana Tech Photography Club in Ruston.">
 </head>
 <body>
     <header class="site-header">
@@ -29,22 +31,36 @@
     </header>
 
     <main>
-        <section class="page-hero">
-            <p class="eyebrow">Louisiana Tech Photography Enthusiasts</p>
-            <h1>Get Into Photography</h1>
-            <p class="lead">We host meetings, photo walks, critiques, and hands-on shoots for students at every experience level.</p>
-            <div class="hero-actions">
-                <a class="button" href="Gallery.html">Open the Gallery</a>
-                <a class="button secondary" href="https://discord.com/invite/enFX2D7kGC">Join on Discord</a>
+        <section class="projection" data-projection aria-labelledby="home-heading">
+            <div class="projection-stage">
+                <img class="projection-image" data-projection-image src="gallery/images/img_0001_330D_preview.webp" alt="Two people wearing gold paper crowns against a teal backdrop" fetchpriority="high">
+                <div class="projection-copy">
+                    <h1 id="home-heading">Come take <br>pictures.</h1>
+                    <p>We’re Louisiana Tech’s student photo club. Bring your phone or camera. Beginners are welcome.</p>
+                    <a class="button" href="Gallery.html">Explore the gallery <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+                </div>
+                <a class="projection-credit" data-projection-link href="Gallery.html#img_0001_330D" aria-label="Open the featured photograph in the gallery">
+                    <span data-projection-credit aria-live="polite">Image 30 / Benjamin Eunice</span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11"/></svg>
+                </a>
+            </div>
+            <div class="projection-program">
+                <div class="program-title"><strong>Featured frames</strong><span>From the member gallery</span></div>
+                <div class="frame-strip" role="group" aria-label="Choose a featured photograph">
+                    <button type="button" class="frame" aria-label="Show Image 30 by Benjamin Eunice" aria-pressed="true" data-frame="img_0001_330D" data-title="Image 30" data-credit="Benjamin Eunice" data-alt="Two people wearing gold paper crowns against a teal backdrop" data-src="gallery/images/img_0001_330D_preview.webp"><img src="assets/frames/img_0001_330D.webp" alt="" width="160" height="96"><span>01</span></button>
+                    <button type="button" class="frame" aria-label="Show Image 15 by Cason Smith" aria-pressed="false" data-frame="img_0009_3AA8" data-title="Image 15" data-credit="Cason Smith" data-alt="Photographers kneel around a stool in a campus studio" data-src="gallery/images/img_0009_3AA8_preview.webp"><img src="assets/frames/img_0009_3AA8.webp" alt="" width="160" height="96"><span>02</span></button>
+                    <button type="button" class="frame" aria-label="Show Image 27 by Damien Sylvester" aria-pressed="false" data-frame="img_0021_91A9" data-title="Image 27" data-credit="Damien Sylvester" data-alt="Black-and-white studio portrait of a person wearing dark glasses and a white shirt" data-src="gallery/images/img_0021_91A9_preview.webp"><img src="assets/frames/img_0021_91A9.webp" alt="" width="160" height="96"><span>03</span></button>
+                    <button type="button" class="frame" aria-label="Show Image 10 by John Skrobarcek" aria-pressed="false" data-frame="img_0029_CC81" data-title="Image 10" data-credit="John Skrobarcek" data-alt="A person and a can of beans in a red-lit studio scene" data-src="gallery/images/img_0029_CC81_preview.webp"><img src="assets/frames/img_0029_CC81.webp" alt="" width="160" height="96"><span>04</span></button>
+                </div>
             </div>
         </section>
 
         <section class="section" aria-labelledby="featured-heading">
             <div class="section-header">
                 <div>
-                    <h2 id="featured-heading">Member Work</h2>
+                    <h2 id="featured-heading">More from our members</h2>
                 </div>
-                <p>Randomized each visit from the gallery data.</p>
+                <a class="text-link" href="Gallery.html">View all photos</a>
             </div>
             <div class="home-photo-grid" data-featured-photos>
                 <p class="empty-state">Loading photos...</p>
@@ -53,15 +69,16 @@
 
         <section class="section split" aria-labelledby="join-heading">
             <div class="panel">
-                <p class="eyebrow">What we do</p>
-                <h2 id="join-heading">A practical club for shooting more often.</h2>
-                <p>Meetings focus on real photography habits: planning shoots, learning camera settings, editing thoughtfully, and sharing work with people who can give useful feedback.</p>
+                <h2 id="join-heading">Come shoot with us.</h2>
+                <p>Join us for photo walks, hands-on shoots, and critiques. Learn your camera settings, try new ways to edit, and share work with people who can give useful feedback.</p>
                 <p>Bring a camera, bring a phone, or just show up curious.</p>
+                <a class="text-link" href="Events.html">See club events</a>
             </div>
             <div class="panel join-panel">
                 <div>
-                    <h2>Join</h2>
-                    <p>Scan the QR code or use the Discord link to get meeting updates and share your photos.</p>
+                    <h2>Join on Discord</h2>
+                    <p>Get meeting updates and share your photos.</p>
+                    <a class="button" href="https://discord.com/invite/enFX2D7kGC">Open invite on Discord</a>
                 </div>
                 <img class="qr-code" src="assets/qr/discord-qr.png" alt="QR code for joining the LA Tech Photography Club Discord">
             </div>
